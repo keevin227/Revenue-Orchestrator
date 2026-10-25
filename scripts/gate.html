@@ -30,12 +30,16 @@
   button:disabled { opacity: .6; cursor: progress; }
   .msg { min-height: 22px; margin-top: 14px; font-size: 14px; color: var(--muted); }
   .msg.err { color: var(--red); }
+  .lang { position: fixed; top: 20px; right: 20px; height: 38px; color: var(--text); background: var(--panel); border: 1px solid var(--line); }
+  html[lang="fa"] body { font-family: "Vazirmatn", Tahoma, sans-serif; }
+  html[lang="fa"] h1 { letter-spacing: 0; line-height: 1.35; }
   .shake { animation: shake .35s; }
   @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 </style>
 </head>
 <body>
 <div class="gate" id="gate">
+  <button class="lang" id="language" type="button">فا</button>
   <div class="box">
     <div class="mark"><i></i></div>
     <div class="kicker">Private preview</div>
@@ -55,6 +59,23 @@
   const form = document.getElementById('form'), pw = document.getElementById('pw');
   const go = document.getElementById('go'), msg = document.getElementById('msg');
   const KEY = 'ro-deck-key';
+  const language = new URL(location.href).searchParams.get('lang') || localStorage.getItem('deck-language') || 'en';
+  if (language === 'fa') {
+    document.documentElement.lang = 'fa'; document.documentElement.dir = 'rtl';
+    document.title = 'ارکستریتور درآمد';
+    document.querySelector('.kicker').textContent = 'پیش‌نمایش خصوصی';
+    document.querySelector('.box h1').textContent = 'ارکستریتور درآمد';
+    document.querySelector('.box .sub').textContent = 'برای مشاهدهٔ ارائه، رمز را وارد کنید.';
+    pw.placeholder = 'رمز عبور'; pw.setAttribute('aria-label', 'رمز عبور');
+    go.textContent = 'ورود';
+  }
+  const languageButton = document.getElementById('language');
+  languageButton.textContent = language === 'fa' ? 'EN' : 'فا';
+  languageButton.addEventListener('click', () => {
+    const next = language === 'fa' ? 'en' : 'fa';
+    localStorage.setItem('deck-language', next);
+    const url = new URL(location.href); url.searchParams.set('lang', next); location.assign(url.href);
+  });
   const u8 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
   const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
   const store = {
@@ -87,14 +108,14 @@
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    go.disabled = true; msg.className = 'msg'; msg.textContent = 'Unlocking…';
+    go.disabled = true; msg.className = 'msg'; msg.textContent = language === 'fa' ? 'در حال باز کردن…' : 'Unlocking…';
     try {
       const key = await deriveKey(pw.value);
       const deck = await open(key);
       store.set(b64(await crypto.subtle.exportKey('raw', key)));
       mount(deck);
     } catch {
-      go.disabled = false; msg.className = 'msg err'; msg.textContent = 'Wrong password.';
+      go.disabled = false; msg.className = 'msg err'; msg.textContent = language === 'fa' ? 'رمز نادرست است.' : 'Wrong password.';
       form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
       pw.select();
     }

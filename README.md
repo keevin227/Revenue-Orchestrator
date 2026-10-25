@@ -20,6 +20,8 @@ A 16-slide cinematic deck in plain HTML, CSS and JavaScript (no build step), in 
 | `F` | fullscreen |
 | `Home` / `End` | first / last slide |
 
+The presentation also has a Persian mode. Use the language control in the bottom navigation, or open `?lang=fa#4` directly. The selected language is remembered locally; switching languages keeps the current slide. In Persian, the horizontal navigation keys and swipe direction follow right-to-left reading order.
+
 Deep links work by slide number, e.g. `#4` opens the system animation. On touch screens, swipe.
 
 Run locally (unprotected source):

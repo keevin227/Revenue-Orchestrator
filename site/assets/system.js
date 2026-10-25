@@ -106,7 +106,7 @@
     const now = performance.now();
     const labeled = now - lastLabel > 650 && Math.random() < 0.5;
     if (labeled) lastLabel = now;
-    const label = labeled ? LABELS[Math.floor(Math.random() * LABELS.length)] : null;
+    const label = labeled ? window.deckTranslate(LABELS[Math.floor(Math.random() * LABELS.length)]) : null;
     let w = 0;
     if (label) { ctx.font = '500 10.5px "JetBrains Mono", monospace'; w = ctx.measureText(label).width + 16; }
     parts.push({ type: 'cap', sx: TUBE.x1, sy: y, ex: ENG.x - ENG.r + 6, ey: ENG.y + rnd(-14, 14), lane: labeled ? rnd(-55, 55) : rnd(-30, 30), t: 0, dur: labeled ? 2.6 : rnd(1.3, 1.8), label, w });

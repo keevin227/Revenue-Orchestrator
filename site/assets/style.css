@@ -396,3 +396,44 @@ kbd { font-family: var(--mono); border: 1px solid var(--line-2); border-radius: 
   .slide.active .anim { animation-duration: .01s; }
   .slide.active .frag-card, .slide.active .orb-ring, .slide.active .orb-core, .slide.active .wave i { animation: none; }
 }
+
+/* Persian presentation: keep the diagram's physical coordinates while making copy readable RTL. */
+html[lang="fa"] { --sans: "Vazirmatn", Tahoma, sans-serif; --mono: "Vazirmatn", Tahoma, sans-serif; }
+html[lang="fa"] .slide { direction: rtl; text-align: right; }
+html[lang="fa"] h1, html[lang="fa"] h2, html[lang="fa"] .huge { letter-spacing: 0; line-height: 1.27; }
+html[lang="fa"] h1 { font-size: 102px; }
+html[lang="fa"] h2 { font-size: 45px; }
+html[lang="fa"] .huge { font-size: 78px; }
+html[lang="fa"] h3 { line-height: 1.45; }
+html[lang="fa"] .kicker, html[lang="fa"] .sec-h, html[lang="fa"] .cr-h, html[lang="fa"] .illus, html[lang="fa"] .sign span { letter-spacing: 0; text-transform: none; }
+html[lang="fa"] .title-wrap { left: auto; right: 110px; top: 195px; }
+html[lang="fa"] .logo-strip { left: auto; right: 110px; }
+html[lang="fa"] .press { right: auto; left: 90px; }
+html[lang="fa"] .s-lies .kicker { left: auto; right: 150px; }
+html[lang="fa"] .head.center, html[lang="fa"] .lede.center, html[lang="fa"] .huge, html[lang="fa"] .dead-copy { text-align: center; }
+html[lang="fa"] .ref-cols, html[lang="fa"] .out-grid, html[lang="fa"] .trust-grid { direction: ltr; }
+html[lang="fa"] .ref-col, html[lang="fa"] .out, html[lang="fa"] .rule { direction: rtl; text-align: right; }
+html[lang="fa"] .ref-col:not(:last-child)::after { content: "‹"; }
+html[lang="fa"] .sys-cap { width: 1420px; }
+html[lang="fa"] .sys-cap h2 { font-size: 35px; }
+html[lang="fa"] .sys-overlay { direction: ltr; }
+html[lang="fa"] .sys-overlay .chip-algo, html[lang="fa"] .sys-overlay .outp { direction: rtl; text-align: right; }
+html[lang="fa"] .outp { padding: 8px 12px 8px 42px; }
+html[lang="fa"] .outp b { font-size: 13px; }
+html[lang="fa"] .outp span.s { font-size: 10px; }
+html[lang="fa"] .outp .out-ico { left: 8px; }
+html[lang="fa"] .sc-row, html[lang="fa"] .sc-head, html[lang="fa"] .sc-foot, html[lang="fa"] .mini-row { direction: rtl; }
+html[lang="fa"] .sigcard { padding-top: 22px; padding-bottom: 22px; }
+html[lang="fa"] .rule h3 { font-size: 25px; }
+html[lang="fa"] .legal { left: 18px; right: 165px; text-align: right; }
+html[lang="fa"] .hud { direction: ltr; }
+html[lang="fa"] .count, html[lang="fa"] .val, html[lang="fa"] .hrs, html[lang="fa"] .sc-time, html[lang="fa"] .pill { direction: ltr; unicode-bidi: isolate; }
+.nav.lang { width: 39px; font-size: 13px; font-weight: 700; }
+.nav:focus-visible { outline: 2px solid var(--cy); outline-offset: 2px; }
+html[lang="fa"] .title-wrap { left: 110px; right: auto; width: 700px; }
+html[lang="fa"] .logo-strip { left: 110px; right: auto; }
+html[lang="fa"] .press { left: auto; right: 90px; }
+html[lang="fa"] .press { bottom: 96px; }
+html[lang="fa"] .sys-overlay .chip-algo { height: 66px; padding: 7px 10px; text-align: center; }
+html[lang="fa"] .sys-overlay .chip-algo b { font-size: 13px; line-height: 1.15; margin-top: 1px; }
+html[lang="fa"] .sys-overlay .chip-algo b span { display: block; font-size: 10px; margin: 0; line-height: 1.2; }
