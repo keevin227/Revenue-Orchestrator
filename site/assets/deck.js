@@ -121,9 +121,13 @@
   }
 
   addEventListener('hashchange', () => { const i = parseInt(location.hash.slice(1), 10); if (i) go(i - 1, 0, false); });
-  addEventListener('DOMContentLoaded', () => {
+  /* The deck may be mounted after load (the password gate decrypts it into the page), so start
+     immediately when the document is already parsed. Later scripts register their hooks first. */
+  const start = () => {
     const i = parseInt(location.hash.slice(1), 10);
     go(i ? i - 1 : 0, 0, false);
     requestAnimationFrame(loop);
-  });
+  };
+  if (document.readyState === 'loading') addEventListener('DOMContentLoaded', start);
+  else setTimeout(start, 0);
 })();
